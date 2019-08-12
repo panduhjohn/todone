@@ -14,17 +14,29 @@ let todos = [
     completed: false,
     priority: 1,
   },
-]
+  {
+    name: 'buy more coffee',
+    date: getCurrentDateAndTime(),
+    completed: false,
+    priority: 2,
+  },
+  {
+    name: 'Take dog to groomer',
+    date: getCurrentDateAndTime(),
+    completed: false,
+    priority: 1,
+  },
+];
 
 // TODO: uncomment below once you have printList and printTodo working!
 // This way you'll have a pre-populated todo list to play with.
 
-// printList();
+printList();
 
 // Instead of taking in various parameters, we're going to pass in a whole todo object here.
 // Remember that you can access that todo's properties with dot notation!
 function printTodo(todo, todoIndex) {
-
+// console.log('string');
   const ol = document.querySelector('.todo-list');
   
   const li = document.createElement('li');
@@ -34,10 +46,13 @@ function printTodo(todo, todoIndex) {
   const todoDateElement = document.createElement('p');
 
   // Set the todo elements above to the appropriate properties from the todo that was passed in.
-
+  todoNameElement.innerText = todo.name;
+  todoDateElement.innerText = todo.date;
 
   // If the todo's priority property is high priority (2, or whatever you've set it to), then do some extra styling on the li here. Bold? Red? Bigger font? Up to you!
-
+  if(todo.priority > 1) {
+    li.style.fontWeight = 'bold';
+  }
 
 
   li.appendChild(todoNameElement);
@@ -51,6 +66,7 @@ function printTodo(todo, todoIndex) {
 
 // Here we're passing in the whole todo, so that you can have that object in `printTodo`!
 function printList() {
+  // console.log('string')
   let i = 0;
   while (i < todos.length) {
     printTodo(todos[i], i);
@@ -59,8 +75,9 @@ function printList() {
   }
 }
 
-function addTodo() {
+function addTodo(todo) {
   // What should we take in and what should we push in?
+  todos.push(todo);
 }
 
 const addButton = document.querySelector('.add-todo');
@@ -75,10 +92,21 @@ function addToList() {
   // Be careful when grabbing the `.value` of priorityInput above. Whatever value they choose in their pulldown will come in as a string!
 
   // Now make a todo object out of all the values above! (And `false` for `completed`!)
-  
+  let todo = 
+    {
+      name: todoName,
+      date: todoDate,
+      completed: false,
+      priority: priorityInput.value, 
+    }
+  ;
+  // console.log(todo);
   // Now pass that todo into your `addTodo` and `printTodo` functions. Pay attention to what `printTodo` takes in as a parameter!
-
-
+  addTodo(todo);
+  // printTodo(todo, todos.length - 1);
+  printTodo(todo, todos.indexOf(todo));
+  // console.log(todos.indexOf(todo));
+  inputBox.value = '';
 }
 
 
@@ -96,12 +124,14 @@ function handleMark(event) {
 
 function markComplete(index) {
   // If it's complete in the data, set it to not complete, and vice versa!
+  todos[index].completed = !todos[index].completed;
 }
 
 function printMark(index) {
   const li = document.querySelector(`li:nth-child(${index + 1})`);
   
     // Set the dom styling appropriately here based on whether it's complete or not!
+  li.style.color = 'red';
 }
 
 const deleteButton = document.querySelector('.delete-completed-todos');
