@@ -131,7 +131,8 @@ function printMark(index) {
   const li = document.querySelector(`li:nth-child(${index + 1})`);
   
     // Set the dom styling appropriately here based on whether it's complete or not!
-  li.style.color = 'red';
+  // li.style.color = 'red';
+  li.classList.toggle('red');
 }
 
 const deleteButton = document.querySelector('.delete-completed-todos');
