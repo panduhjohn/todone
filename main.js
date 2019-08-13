@@ -54,7 +54,6 @@ function printTodo(todo, todoIndex) {
     li.style.fontWeight = 'bold';
   }
 
-
   li.appendChild(todoNameElement);
   li.appendChild(todoDateElement);
 
@@ -142,11 +141,11 @@ function handleDelete() {
   const newTodos = [];
 
   // Only push into newTodos any todo that is NOT complete.
-for(let i = 0; < todos.length; i++) {
-  if(todo.completed === false){
-    newTodos.push(todo);
-  }
-}
+// for(let i = 0; < todos.length; i++) {
+//   if(todo.completed === false){
+//     newTodos.push(todo);
+//   }
+// }
   
   todos = newTodos;
   clearList();
